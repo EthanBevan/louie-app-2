@@ -13,6 +13,10 @@ list.addEventListener('click', function(ev) {
 
 
 
+
+//if checkbox ticked, then run this onclick="louieSaved()"
+
+
 var d = new Date();
     var weekday = new Array(7);
     weekday[0] = "Sunday";
@@ -32,19 +36,58 @@ var d = new Date();
 
 // Check browser support
 
-function louieSaved() {
+// function louieSaved() {
 
-if (typeof(Storage) !== "undefined") {
-    // Store
-    localStorage.setItem("checkboxTicked", "Louie Has Been Fed");
-    // Retrieve
-    document.getElementById("result").innerHTML = localStorage.getItem("checkboxTicked")
-;
-} else {
-    document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
-}
-}
+// if (typeof(Storage) !== "undefined") {
+//     // Store
+//     localStorage.setItem("checkboxTicked", "Louie Has Been Fed");
+//     // Retrieve
+//     document.getElementById("result").innerHTML = localStorage.getItem("checkboxTicked")
+// ;
+// } else {
+//     document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+// }
+// }
 
+//Email
+
+// function sendMail() {
+//     var link = "mailto:ethanbevan00@yahoo.com"
+//              + ""
+//              + "&subject=" + escape("Louie Fed")
+//              + "&body=" + escape("Letting You Know That Louie has been fed tonight!")
+//     ;
+
+//     window.location.href = link;
+// }
+
+
+
+function sendEmail()
+{
+     $.ajax({
+           url: "mail.php",
+           type: "POST",
+           success: function(response) {
+               if (!response) {
+                    alert("Something went wrong. Please try again");
+                    return;
+               }
+
+               var parsedJSON = eval('('+response+')');
+
+               // If there's an error, display it.
+               if(parsedJSON.Error) {
+                  // Handle session timeout.
+                  if (parsedJSON.Error == "Timeout") {
+                       alert("Session timed out. Please login again.");
+                       window.location.reload();
+                   }
+                }
+               document.getElementById('mailStatus').innerHTML = "Email Sent successfully";  
+            }
+     });
+}
 
 
 

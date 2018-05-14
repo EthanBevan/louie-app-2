@@ -9,29 +9,35 @@
   </head>
   <body>
 
-  <h1 class="louie">Louie's App</h1>
-
   <div id="myDIV" class="header">
-  <h2 class="louie">My To Do List</h2>
+  <h2 class="louie">Louie's Fed Or Not App</h2>
   
   <p id="date"></p>
 
-  <ul onclick="louieSaved()" id="myUL">
+  <ul onclick="sendEmail()" id="myUL">
   <li class="louie">Feed Louie</li>
 </ul>
 
 </div>
 
-<div id="result"></div>
+<p id="mailStatus"></p>
+
+<br>
+<br>
+<!-- <div id="result"></div> -->
 
   </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
   <script src="app.js"></script>
 </html>
 <!-- 
-When someone clicks check it sends a text notifcation to both our emails. 
-
-Or
 
 Save to local storage, so can reopen it and its still checked, but gets reset every night at midnight.
 -->
+
+
+
+<!-- 
+if its checked be there, if its not, dont be there -->
